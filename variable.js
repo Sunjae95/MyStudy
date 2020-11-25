@@ -63,9 +63,12 @@ const gSymbol2=Symbol.for('id');
 console.log(gSymbol1===gSymbol2);   //Symbol.for로 선언시 같게 선언
 console.log(`value: ${symbol1.description}, type:${typeof symbol1}`);   //value는 description붙여야됨
 
-//object ref는 only read but 
+//object ref는 only read but
 const seonjae={name:'seonjae', age: 20};
 console.log(`${seonjae.name} ${seonjae.age}`);
+const seonjae2=seonjae;
+seonjae2.name='minyeong';
+console.log(`${seonjae2.name} ${seonjae2.age}`);
 //Dynamic typing
 let text='hello';
 console.log(`value: ${text}, type: ${typeof text}`);
