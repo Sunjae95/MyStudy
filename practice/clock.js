@@ -1,4 +1,4 @@
-const clock=document.querySelector('.jsClock');
+'use strict'
 const clockText=document.querySelector('h1');
 
 function getTime(){
