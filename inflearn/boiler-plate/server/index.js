@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
 
-const { User } = require('./config/models/user');
+const { User } = require('./models/user');
 const { auth } = require('./middleware/auth');
 app.use(bodyParser.urlencoded({extended: true}));   //application/x-www-form-urlencoded 처럼 된 것을 분석하여 가져와줌
 app.use(bodyParser.json());   //applicatoin/json 으로 된것을 분석해서 가져와주게 도와주는것

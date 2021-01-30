@@ -1,4 +1,4 @@
-const { User } = require("../config/models/user");
+const { User } = require("../models/user");
 
 let auth = (req, res, next) => {    //인증 처리
     // 1.클라이언트에서 토큰을 가져옴
