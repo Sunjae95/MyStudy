@@ -3,15 +3,29 @@ import { Col } from 'antd';    //row를 자유롭게 만들기위해서 row는 �
 
 
 function GridCards(props) {
-    return (
-        <Col lg={6} md={8} xs={24}>     
-            <div style={{ position: 'relative' }}>
-                <a href = {`/movie/${props.movieId}`}>
-                    <img style={{ width: '100%', height: '320px'}} src = {props.image} alt={props.movieName}></img>
-                </a>
-            </div>
-        </Col>
-    )
+
+    if(props.landingPage){
+        return (
+            <Col lg={6} md={8} xs={24}>     
+                <div style={{ position: 'relative' }}>
+                    <a href = {`/movie/${props.movieId}`}>
+                        <img style={{ width: '100%', height: '320px'}} src = {props.image} alt={props.movieName}></img>
+                    </a>
+                </div>
+            </Col>
+        )
+    } else {
+        return (
+            <Col lg={6} md={8} xs={24}>     
+                <div style={{ position: 'relative' }}>
+                    
+                        <img style={{ width: '100%', height: '320px'}} src = {props.image} alt={props.castName}></img>
+        
+                </div>
+            </Col>
+        )
+
+    }
 }
 
 export default GridCards
