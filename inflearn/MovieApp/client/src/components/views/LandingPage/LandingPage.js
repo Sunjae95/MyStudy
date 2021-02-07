@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FaCode } from "react-icons/fa";
 import { API_KEY, API_URL, IMAGE_BASE_URL } from '../../Config';
 import MainImage from './Sections/MainImage';
 import GridCards from '../commons/GridCards';
@@ -11,22 +10,22 @@ function LandingPage() {
     const [MainMovieImage, setMainMovieImage] = useState(null);
     const [CurrentPage, setCurrentPage] = useState(0);
 
+    const fetchMovies = function (endpoint) {
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(response => {
+                setMovies([...Movies, ...response.results]); // 현재Movies에 새로 불러온 results값을 더해줌
+                setMainMovieImage(response.results[0]);
+                setCurrentPage(response.page);
+            });
+    }
+
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
         fetchMovies(endpoint);
         
     }, []);
-    
-    const fetchMovies = (endpoint) =>{
-        fetch(endpoint)
-        .then(response => response.json())
-        .then(response => { 
-            setMovies([...Movies, ...response.results]);  // 현재Movies에 새로 불러온 results값을 더해줌
-            setMainMovieImage(response.results[0]);
-            setCurrentPage(response.page);
-        });
-    }
     
     
     const loadMoreItems = () =>{
