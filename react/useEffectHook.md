@@ -39,3 +39,9 @@ reducer는 상태를 업데이트하는 함수를 뜻한다.
 ```javascript
 const [number(상태), dispatch(액션을 발생하는 함수, 보내다라는 의미)]useReducer(reducer(함수), 0(객체,문자, 배열등 될수있음));
 ``` 
+
+# useReducer vs useState
+상황에 따라 불편할때도 있고 편할때도 있어서 뭐가 더 좋다 할수없다.
+값이 하나고 별로 없다면 useState로 관리하는것이 편하다.
+만약에 컴포넌트에서 많이 관리하거나 배열에 무언가를 추가하고 없애야된다면 (수정) useReducer
+간단하다 싶으면 useState 복잡하다 싶으면 useReducer
