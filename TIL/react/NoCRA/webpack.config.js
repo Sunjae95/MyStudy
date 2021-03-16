@@ -15,7 +15,7 @@ module.exports = {
     rules: [
 	// 첫번째 룰: ES6, JSX 구문 변환에 대한 것.
       {
-        test: /\\.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -26,7 +26,7 @@ module.exports = {
       },
 	// 두번째 룰: CSS 처리에 대한 것. css-loader가 작동하기 위해서는 style-loader가 필요.
       {
-        test: /\\.css$/,
+        test: /\.css$/,
         use: ["style-loader", "css-loader"]
       }
     ]

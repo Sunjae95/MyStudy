@@ -1,14 +1,13 @@
-function test() {
-    var a = 'var';
-    let b = 'let';
-
-    {
-        let c = 'let';
-        console.log(c);
-    }
-    console.log(a);
-    console.log(b);
-    console.log(c); //ReferenceError: c is not defined
+function hello1(){
+    console.log('hello1');
 }
 
-test();
+hello1();
+hello2();
+
+function hello2(){
+    console.log('hello2');
+}
+
+console.log(hello1());
+console.log(hello2)();

@@ -1,19 +1,6 @@
-# OAuth란 무엇인가?
-`인증`을 위한 오픈 스탠더드 프로토콜로, 사용자가 Facebook이나 트위터 같은 인터넷 서비스의 기능을 `다른 애플리케이션(데스크톱, 웹, 모바일 등)`에서도 사용할 수 있게 한 것이다.
+# OAuth
+인터넷 사용자들이 비밀번호를 제공하지 않고 다른 웹사이트 상의 자신들의 정보에 대해 웹사이트나 애플리케이션의 접근 권한을 부여할 수 있는 공통적인 수단으로서 사용되는, 접근 위임을 위한 개방형 표준이다. 이 매커니즘은 여러 기업들에 의해 사용되는데, 이를테면 아마존, 구글, 페이스북, 마이크로소프트, 트위터가 있으며 사용자들이 타사 애플리케이션이나 웹사이트의 계정에 관한 정보를 공유할 수 있게 허용한다.
 
-# OAuth 1.0 인증과정
-|용어|설명|
-|:-|:-|
-|User|Service Provider에 계정을 가지고 있으면서, Consumer를 이용하려는 사용자|
-|Service Provider|OAuth를 사용하는 Open API를 제공하는 서비스|
-|Consumer|OAuth 인증을 사용해 Service Provider의 기능을 사용하려는 애플리케이션이나 웹 서비스|
-|Request Token|	Consumer가 Service Provider에게 접근 권한을 인증받기 위해 사용하는 값. 인증이 완료된 후에는 Access Token으로 교환한다.|
-|Access Token|인증 후 Consumer가 Service Provider의 자원에 접근하기 위한 키를 포함한 값|
+# OAuth가 나온이유
+OAuth는 이렇게 제각각인 인증방식을 표준화한 인증방식이다.인증방식의 표준이 없었기 때문에 기존의 기본인증인 아이디와 비밀번호를 사용하였는데, 이는 보안상 취약한 구조 또한 각 애플리케이션마다 개발한 회사의 방법대로 했다. OAuth를 이용하면 이 인증을 공유하는 애플리케이션끼리는 별도의 인증이 필요없다. 따라서 여러 애플리케이션을 통합하여 사용하는 것이 가능하게 된다.
 
-![OAuth 1.0 인증과정](https://oauth.net/core/diagram.png)
-출처:https://oauth.net/core/diagram.png
-
-
-# OAuth 2.0 인증과정
->[참조]<br>
->https://d2.naver.com/helloworld/24942
