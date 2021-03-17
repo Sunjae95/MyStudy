@@ -1,13 +1,26 @@
-function hello1(){
-    console.log('hello1');
+// var first = '1st';
+
+// function call(){
+//     var second = '2nd';
+
+//     function plus(){
+//         var third = '3th';
+//         console.log(first+second+third);
+//     }
+//     plus();
+// }
+// call();
+
+var x = 1;
+
+function foo() {
+  var x = 10;
+  bar();
 }
 
-hello1();
-hello2();
-
-function hello2(){
-    console.log('hello2');
+function bar() {
+  console.log(x);
 }
 
-console.log(hello1());
-console.log(hello2)();
+foo(); // ?
+bar(); // ?
