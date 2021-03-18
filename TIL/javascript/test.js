@@ -11,16 +11,36 @@
 // }
 // call();
 
-var x = 1;
+// var x = 1;
 
-function foo() {
-  var x = 10;
-  bar();
-}
+// function foo() {
+//   var x = 10;
+//   bar();
+// }
 
-function bar() {
+// function bar() {
+//   console.log(x);
+// }
+
+// foo(); // ?
+// bar(); // ?
+
+// function exampleFunction() {
+//   var x = "declared inside function";
+//   // x는 오직 exampleFunction 내부에서만 사용 가능.
+//   console.log("Inside function");
+//   console.log(x);
+// }
+
+// console.log(x);  // 에러 발생
+
+var x = 'parent';
+
+child();
+
+function child(){
+  var y = 'childern';
   console.log(x);
 }
 
-foo(); // ?
-bar(); // ?
+console.log(y);
