@@ -34,13 +34,22 @@
 
 // console.log(x);  // 에러 발생
 
-var x = 'parent';
+// var x = 'parent';
 
-child();
+// child();
 
-function child(){
-  var y = 'childern';
-  console.log(x);
+// function child(){
+//   var y = 'childern';
+//   console.log(x);
+// }
+
+// console.log(y);
+
+function init() {
+  var name = "Seonjae";     // name은 init에 의해 생성된 지역 변수이다.
+  function floatName() {    // floatName() 은 내부 함수이며, 클로저다.
+    console.log(name);            // 부모 함수에서 선언된 변수를 사용한다.
+  }
+  floatName();
 }
-
-console.log(y);
+init();
