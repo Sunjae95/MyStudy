@@ -5,7 +5,7 @@
 # Capturing
 캡처링은 최상위 요소에서 이벤트가 발생한 타깃까지 핸들러가 동작하는 과정이다. 하지만 대부분 버블링이 많이 된다. 왜냐하면 EventListener에 {capture: true}를 선언을 안한다면 핸들러가 동작하지 않기 때문에 버블링만 일어나고 끝나기 때문이다. 
 
-![bubbling,capturing,target](image\bubblingcapturing.PNG)
+![bubbling,capturing,target](image/bubblingcapturing.PNG)
 
 >**참조**<br>
 >https://ko.javascript.info/bubbling-and-capturing
