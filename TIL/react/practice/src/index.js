@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Pt1/App';
+import ReducerApp from './Pt1/ReducerApp'
 // import App from './Pt2/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <ReducerApp />
   </BrowserRouter>
   ,
   document.getElementById('root')

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //컴포넌트 선언가능
-function User({ user, onRemove, onToggle }) {
+const User = React.memo(function User({ user, onRemove, onToggle }) {
   const { username, email, id, active } = user;
 
   //useEffect 사용하려면 아래와같은 상황에서 사용해야됨
@@ -9,14 +9,14 @@ function User({ user, onRemove, onToggle }) {
   //REST API를 사용할 때
   //D3 video.js등 외부라이브러리 사용할때
   //setInterval, setTimeout등..
-  useEffect(() => {
-    console.log("나타남");
-    return () => {
-        //cleaner함수는 unmount될때 사용 컴포넌트가 사라질 때 실행 
-        //라이브러리 인스턴스 제거등..
-      console.log("사라짐");
-    };
-  }, []);
+  // useEffect(() => {
+  //   console.log("나타남");
+  //   return () => {
+  //     //cleaner함수는 unmount될때 사용 컴포넌트가 사라질 때 실행
+  //     //라이브러리 인스턴스 제거등..
+  //     console.log("사라짐");
+  //   };
+  // }, []);
 
   return (
     <div>
@@ -34,7 +34,7 @@ function User({ user, onRemove, onToggle }) {
       <button onClick={() => onRemove(id)}>삭제</button>
     </div>
   );
-}
+});
 
 function UserList({ users, onRemove, onToggle }) {
   return (
@@ -51,7 +51,7 @@ function UserList({ users, onRemove, onToggle }) {
     </>
   );
 }
-export default UserList;
+export default React.memo(UserList);
 
 //useRef를 사용해 변수선언하여 변수값 조정 state를 사용하면 리렌더링되지만 그렇지않게 하려고 useRef를 사용
 //useRef값이 바뀌어도 리렌더링 되지 않음!!
