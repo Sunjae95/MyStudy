@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Pt1/App';
 import ReducerApp from './Pt1/ReducerApp'
-// import App from './Pt2/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import ContextApp from './Pt1/Context/ContextApp';
+import Hello from './Hello';
+import Counter from './Pt1/Counter';
+import CounterClass from './Pt1/CounterClass';
 ReactDOM.render(
   <BrowserRouter>
-    <ReducerApp />
+    <CounterClass />
   </BrowserRouter>
   ,
   document.getElementById('root')

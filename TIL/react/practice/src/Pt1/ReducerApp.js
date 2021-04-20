@@ -1,10 +1,9 @@
 import React, { useRef, useReducer, useMemo, useCallback } from "react";
-import Counter from "./Counter";
 import CreateUser from "./CreatUser";
-import InputSample from "./InputSample";
 import UserList from "./UserList";
+import useInputs from "./useInputs";
 
-//useState vs useReducer 
+//useState vs useReducer
 //state가 단순하면 useState 그렇지않고 복잡하면 useReducer
 function conuterActiveUsers(users) {
   console.log("활성사용자 세는중");
@@ -12,10 +11,11 @@ function conuterActiveUsers(users) {
 }
 
 const initialState = {
-  inputs: {
-    username: "",
-    email: "",
-  },
+  // 커스텀Hook 사용하기 위해 주석처리
+  // inputs: {
+  //   username: "",
+  //   email: "",
+  // },
   users: [
     {
       id: 1,
@@ -40,14 +40,15 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "CHANGE_INPUT":
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.name]: action.value,
-        },
-      };
+    // 커스텀Hook 사용하기 위해 주석처리
+    // case "CHANGE_INPUT":
+    //   return {
+    //     ...state,
+    //     inputs: {
+    //       ...state.inputs,
+    //       [action.name]: action.value,
+    //     },
+    //   };
     case "CREATE_USER":
       return {
         inputs: initialState.inputs,
@@ -72,19 +73,26 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [form, onChange, reset] = useInputs({
+    username: "",
+    email: "",
+  });
+  const { username, email } = form;
 
   const { users } = state;
   const nextId = useRef(4);
-  const { username, email } = state.inputs;
 
-  const onChange = useCallback((e) => {
-    const { name, value } = e.target;
-    dispatch({
-      type: "CHANGE_INPUT",
-      name,
-      value,
-    });
-  }, []);
+  // 커스텀Hook 사용하기 위해 주석처리
+
+  // const { username, email } = state.inputs;
+  // const onChange = useCallback((e) => {
+  //   const { name, value } = e.target;
+  //   dispatch({
+  //     type: "CHANGE_INPUT",
+  //     name,
+  //     value,
+  //   });
+  // }, []);
 
   const onCreate = useCallback(() => {
     dispatch({
@@ -95,8 +103,9 @@ function App() {
         email,
       },
     });
+    reset(); //커스텀Hook reset추가
     nextId.current += 1;
-  }, [username, email]);
+  }, [username, email, reset]);
 
   const onToggle = useCallback((id) => {
     dispatch({
@@ -111,7 +120,7 @@ function App() {
     });
   }, []);
 
-  const count = useMemo(()=> conuterActiveUsers(users), [users]);
+  const count = useMemo(() => conuterActiveUsers(users), [users]);
 
   return (
     <>
