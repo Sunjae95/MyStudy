@@ -9,9 +9,13 @@ import ContextApp from './Pt1/Context/ContextApp';
 import Hello from './Hello';
 import Counter from './Pt1/Counter';
 import CounterClass from './Pt1/CounterClass';
+import ErrorBoundary from './Pt1/Class/ErrorBoundary';
+import ClassUser from './Pt1/Class/ClassUser';
 ReactDOM.render(
   <BrowserRouter>
-    <CounterClass />
+    <ErrorBoundary>
+      <ClassUser/>
+    </ErrorBoundary>
   </BrowserRouter>
   ,
   document.getElementById('root')
