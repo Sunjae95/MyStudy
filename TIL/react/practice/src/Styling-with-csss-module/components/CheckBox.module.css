@@ -1,0 +1,29 @@
+.checkBox {
+    display: flex;
+    align-items: center;
+
+}
+.checkBox label {
+    cursor: pointer;
+}
+.checkBox input{
+    width: 0;
+    height: 0;
+    position: absolute;
+    opacity: 0;
+}
+.checkBox span {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.icon{
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    margin-right: 0.25rem;
+    color: #adb5bd;
+}
+
+.checked {
+    color: #339af0;
+}

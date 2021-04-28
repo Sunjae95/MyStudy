@@ -3,8 +3,6 @@ import ContextCreateUser from "./ContextCreateUser";
 import ContextUserList from "./ContextUserList";
 import produce from "immer";
 
-
-
 function conuterActiveUsers(users) {
   console.log("활성사용자 세는중");
   return users.filter((user) => user.active).length;
