@@ -1,30 +1,13 @@
-const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
+import axios from "axios";
 
-//가짜 post목록
-const posts = [
-  {
-    id: 1,
-    title: "리덕스 미들웨어",
-    body: "리덕스 미들",
-  },
-  {
-    id: 2,
-    title: "리덕스thunk",
-    body: "리덕스 리덕스thunk",
-  },
-  {
-    id: 3,
-    title: "리덕스 saga",
-    body: "리덕스 saga",
-  },
-];
 
 export const getPosts = async () => {
-  await sleep(500);
-  return posts;
+  //package.json에 proxy설정해서 기본값으로 사용할 수있음 백엔드에서 proxy설정안하고 사용가능
+  const response = await axios.get("/posts");
+  return response.data;
 };
 
 export const getPostById = async (id) => {
-  await sleep(500);
-  return posts.find((post) => post.id === id);
+  const response = await axios.get(`/posts/${id}`);
+  return response.data;
 };

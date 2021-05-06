@@ -1,7 +1,9 @@
 import * as postAPI from "../api/posts";
 import {
   createPromiseThunk,
+  createPromiseThunkById,
   handleAsyncActions,
+  handleAsyncActionsById,
   reducerUtils,
 } from "../lib/asyncUtils";
 
@@ -16,88 +18,23 @@ const GET_POST_ERROR = "GET_POST_ERROR";
 
 const CLEAR_POST = "CLEAR_POST";
 
-// //리팩토링 전
-// //thunk함수 생성
-// export const getPosts = () => async (dispatch) => {
-//   //요청시작
-//   dispatch({ type: GET_POSTS });
-//   //API를 호출
-//   try {
-//     const posts = await postAPI.getPosts();
-//     //성공했을 때
-//     dispatch({ type: GET_POSTS_SUCCESS, posts });
-//   } catch (e) {
-//     //실패했을 때
-//     dispatch({ type: GET_POSTS_ERROR, error: e });
-//   }
-// };
-// export const getPost = (id) => async (dispatch) => {
-//   //요청시작
-//   dispatch({ type: GET_POST });
-//   //API를 호출
-//   try {
-//     const post = await postAPI.getPostById(id);
-//     //성공했을 때
-//     dispatch({ type: GET_POST_SUCCESS, post });
-//   } catch (e) {
-//     //실패했을 때
-//     dispatch({ type: GET_POST_ERROR, error: e });
-//   }
-// };
-//리팩토링 후
 export const getPosts = createPromiseThunk(GET_POSTS, postAPI.getPosts);
-export const getPost = createPromiseThunk(GET_POST, postAPI.getPostById);
+export const getPost = createPromiseThunkById(GET_POST, postAPI.getPostById);
+export const goToHome = () => (dispatch, getState, { history }) => {
+  history.push("/");
+};
+
 export const clearPost = () => ({ type: CLEAR_POST });
 const initialState = {
   posts: reducerUtils.initial(),
-  post: reducerUtils.initial(),
+  post: {},
 };
 
 const getPostsReducer = handleAsyncActions(GET_POSTS, "posts", true);
-const getPostReducer = handleAsyncActions(GET_POST, "post");
-
+const getPostReducer = handleAsyncActionsById(GET_POST, "post", true);
 //Reducer 생성
 export default function posts(state = initialState, action) {
   switch (action.type) {
-    //handleAsyncActions 사용전
-    // case GET_POSTS:
-    //   return { ...state, posts: reducerUtils.loading() };
-    // case GET_POSTS_SUCCESS:
-    //   return {
-    //     ...state,
-    //     // 리팩토링전
-    //     // posts: reducerUtils.success(action.posts),
-    //     //리팩토링 후
-    //     posts: reducerUtils.success(action.payload),
-    //   };
-    // case GET_POSTS_ERROR:
-    //   return {
-    //     ...state,
-
-    //     // 리팩토링전
-    //     // posts: reducerUtils.error(action.error),
-    //     //리팩토링 후
-    //     posts: reducerUtils.error(action.error),
-    //   };
-    // case GET_POST:
-    //   return { ...state, post: reducerUtils.loading() };
-    // case GET_POST_SUCCESS:
-    //   return {
-    //     ...state,
-    //     // 리팩토링전
-    //     // post: reducerUtils.success(action.post),
-    //     //리팩토링 후
-    //     post: reducerUtils.success(action.payload),
-    //   };
-    // case GET_POST_ERROR:
-    //   return {
-    //     ...state,
-    //     // 리팩토링전
-    //     // post: reducerUtils.error(action.error),
-    //     //리팩토링 후
-    //     post: reducerUtils.error(action.payload),
-    //   };
-
     //handleAsyncActions 사용후
     case GET_POSTS:
     case GET_POSTS_SUCCESS:
