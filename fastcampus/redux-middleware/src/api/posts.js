@@ -13,7 +13,7 @@ const posts = [
     body: "리덕스 리덕스thunk",
   },
   {
-    id: 1,
+    id: 3,
     title: "리덕스 saga",
     body: "리덕스 saga",
   },
@@ -26,5 +26,5 @@ export const getPosts = async () => {
 
 export const getPostById = async (id) => {
   await sleep(500);
-  return posts.find((post) => posts.id === id);
+  return posts.find((post) => post.id === id);
 };

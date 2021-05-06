@@ -21,7 +21,7 @@ export const createPromiseThunk = (type, promiseCreator) => {
   };
 };
 //createpromise의 type과 의미가 같다
-export const handleAsyncActions = (type, key) => {
+export const handleAsyncActions = (type, key, keepdata) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   //reducer를 만들어줄것임
   return (state, action) => {
@@ -30,7 +30,7 @@ export const handleAsyncActions = (type, key) => {
       case type:
         return {
           ...state,
-          [key]: reducerUtils.loading(),
+          [key]: reducerUtils.loading(keepdata ? state[key].data : null),
         };
       case SUCCESS:
         return {

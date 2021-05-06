@@ -1,4 +1,3 @@
-import { createStore } from "redux";
 import * as postAPI from "../api/posts";
 import {
   createPromiseThunk,
@@ -14,6 +13,8 @@ const GET_POSTS_ERROR = "GET_POSTS_ERROR";
 const GET_POST = "GET_POST";
 const GET_POST_SUCCESS = "GET_POST_SUCCESS";
 const GET_POST_ERROR = "GET_POST_ERROR";
+
+const CLEAR_POST = "CLEAR_POST";
 
 // //리팩토링 전
 // //thunk함수 생성
@@ -46,13 +47,13 @@ const GET_POST_ERROR = "GET_POST_ERROR";
 //리팩토링 후
 export const getPosts = createPromiseThunk(GET_POSTS, postAPI.getPosts);
 export const getPost = createPromiseThunk(GET_POST, postAPI.getPostById);
-
+export const clearPost = () => ({ type: CLEAR_POST });
 const initialState = {
   posts: reducerUtils.initial(),
   post: reducerUtils.initial(),
 };
 
-const getPostsReducer = handleAsyncActions(GET_POSTS, "posts");
+const getPostsReducer = handleAsyncActions(GET_POSTS, "posts", true);
 const getPostReducer = handleAsyncActions(GET_POST, "post");
 
 //Reducer 생성
@@ -106,6 +107,11 @@ export default function posts(state = initialState, action) {
     case GET_POST_SUCCESS:
     case GET_POST_ERROR:
       return getPostReducer(state, action);
+    case CLEAR_POST:
+      return {
+        ...state,
+        post: reducerUtils.initial(),
+      };
     default:
       return state;
   }
