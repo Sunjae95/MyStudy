@@ -1,50 +1,48 @@
-//type(문자열타입)과 creator(특정 파라미터)를 가져옴
+import { call, put } from "@redux-saga/core/effects";
 
-export const createPromiseThunk = (type, promiseCreator) => {
+//type(문자열타입)과 creator(특정 파라미터)를 가져옴
+export const createPromiseSaga = (type, promiseCreator) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
-  //특정 함수를 생성해서 리턴해줌 특정
-  return (param) => async (dispatch) => {
-    dispatch({ type });
+  return function* saga(action) {
     try {
-      const payload = await promiseCreator(param);
-      dispatch({
+      const result = yield call(promiseCreator, action.payload);
+      yield put({
         type: SUCCESS,
-        payload,
+        payload: result,
       });
     } catch (e) {
-      dispatch({
+      yield put({
         type: ERROR,
         payload: e,
         error: true,
+      });
+    }
+  };
+};
+
+export const createPromiseSagaById = (type, promiseCreator) => {
+  const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+  return function* saga(action) {
+    const id = action.meta;
+    try {
+      const result = yield call(promiseCreator, action.payload);
+      yield put({
+        type: SUCCESS,
+        payload: result,
+        meta: id,
+      });
+    } catch (e) {
+      yield put({
+        type: ERROR,
+        payload: e,
+        error: true,
+        meta: id,
       });
     }
   };
 };
 
 const defaultIdSelector = (param) => param;
-
-export const createPromiseThunkById = (type, promiseCreator, idSelector = defaultIdSelector) => {
-  const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
-  return (param) => async (dispatch) => {
-    const id = idSelector(param);
-    dispatch({ type, meta: id });
-    try {
-      const payload = await promiseCreator(param);
-      dispatch({
-        type: SUCCESS,
-        payload,
-        meta: id,
-      });
-    } catch (e) {
-      dispatch({
-        type: ERROR,
-        payload: e,
-        error: true,
-        meta: id,
-      });
-    }
-  };
-};
 
 //createpromise의 type과 의미가 같다
 export const handleAsyncActions = (type, key, keepdata) => {
